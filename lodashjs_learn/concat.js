@@ -6,7 +6,7 @@ function shallowCopy(array) {  //数组浅拷贝
     return target
 }
 
-
+//创建一个新数组，将array与任何数组 或 值连接在一起。
 //concat整体来说是浅拷贝的
 let array = [1];
 function concat(array) {
@@ -27,6 +27,6 @@ function concat(array) {
     return newArray
 }
 
-let test = concat(array, 2, [3], [[4]])
+let test = concat(array, 2, [3], [[4]],[1,[2],[3]])
 console.log(test) //[ 1, 2, 3, [ 4 ] ]
 console.log(array) //[ 1 ]
