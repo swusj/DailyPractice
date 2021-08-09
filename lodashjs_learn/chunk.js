@@ -9,7 +9,7 @@ function chunk(array, size) {
     let j = 0
     while (j< array.length) {
         let temp = []
-        for (i = 0; i < size && j<array.length; i++) {
+        for (let i = 0; i < size && j<array.length; i++) {
             temp.push(array[j++])
         }
         twoArray.push(temp)
