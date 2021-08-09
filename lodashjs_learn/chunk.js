@@ -6,10 +6,12 @@ function chunk(array, size) {
         return undefined
     }
     let twoArray = []
-    while (array.length > 0) {
+    let j = 0
+    while (j< array.length) {
         let temp = []
-        for (i = 0; i < size && array.length > 0; i++) {
-            temp.push(array.shift())
+        for (i = 0; i < size && j<array.length; i++) {
+            temp.push(array[j])
+            j++
         }
         twoArray.push(temp)
     }
