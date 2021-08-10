@@ -1,32 +1,50 @@
-function shallowCopy(array) {  //数组浅拷贝
-    var target = []
-    for (let i = 0; i < array.length; i++) {
-        target[i] = array[i]
+// 创建一个新数组，将array与任何数组 或 值连接在一起。
+function concat(array, ...arg) {
+    let res = []
+    res = res.concat(array)
+    for (let i = 0; i < arg.length; i++) {
+        res = res.concat(arg[i])
     }
-    return target
+    return res
 }
+const array = [1]
+const str = "123"
+const obj = { test: 1 }
+const func = function () { }
 
-//创建一个新数组，将array与任何数组 或 值连接在一起。
-//concat整体来说是浅拷贝的
-let array = [1];
-function concat(array) {
-    let i = 1
-    let newArray = shallowCopy(array)
-    while (i < arguments.length) {
-        if (Array.isArray(arguments[i])) {  //如果参数是数组，就添加数组中的第一层元素
-            let temp = shallowCopy(arguments[i])  
-            for (let j = 0; j < (temp.length); j++) {
-                newArray.push(temp[j])
-            }
-            i++
-        } else {
-            newArray.push(arguments[i++])
-        }
+console.log(concat(array, 2, [3], [[4]], [1, [2], [3]]))
+console.log(concat(str, 2, [3], [[4]], [1, [2], [3]]))
+console.log(concat(obj, 2, [3], [[4]], [1, [2], [3]]))
+console.log(concat(str, obj))
+console.log(concat(str, func))
+console.log(concat(str))
 
-    }
-    return newArray
-}
+// 这是没有用concat()方法实现的冗余的实现方法
+// function shallowCopy(array) {  //数组浅拷贝
+//     var target = []
+//     for (let i = 0; i < array.length; i++) {
+//         target[i] = array[i]
+//     }
+//     return target
+// }
 
-let test = concat(array, 2, [3], [[4]],[1,[2],[3]])
-console.log(test) //[ 1, 2, 3, [ 4 ] ]
-console.log(array) //[ 1 ]
+// //创建一个新数组，将array与任何数组 或 值连接在一起。
+// //concat整体来说是浅拷贝的
+// let array = [1];
+// function concat(array) {
+//     let i = 1
+//     let newArray = shallowCopy(array)
+//     while (i < arguments.length) {
+//         if (Array.isArray(arguments[i])) {  //如果参数是数组，就添加数组中的第一层元素
+//             let temp = shallowCopy(arguments[i])  
+//             for (let j = 0; j < (temp.length); j++) {
+//                 newArray.push(temp[j])
+//             }
+//             i++
+//         } else {
+//             newArray.push(arguments[i++])
+//         }
+
+//     }
+//     return newArray
+// }
