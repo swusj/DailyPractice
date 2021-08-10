@@ -13,7 +13,7 @@ function chunk(array, size) {
             realArray = array
             break
         case "String":
-            realArray = array.split()
+            realArray = array.split("")
             break
         default:
             return []
@@ -25,7 +25,7 @@ function chunk(array, size) {
         let temp = [];
 
         for (let i = 0; i < size; i++) {
-            temp.push(array[j]);
+            temp.push(realArray[j]);
             j += 1;
 
             if (j >= length) {
