@@ -3,37 +3,58 @@
 
 //Note: 不像_.pullAllBy，这个方法会返回一个新数组。
 
-function differenceBy(array, ...args) {  // ...xxx为剩余参数用法，允许将一个不定数量的参数表示为一个数组
-    let values=[]  //存储迭代前的values数组
-    let temp = []  //temp存储迭代后的values数组
-    let iteratee = null
-    values = values.concat(args[0])
-    switch (typeof args[1]){  //迭代器暂时只考虑这种类型，不懂迭代器是数组或对象的话是啥情况，，，
-        case 'function': 
-            iteratee = args.pop()
-            break
-        case 'string':
-            let temp = args.pop()
-            iteratee = function (value){
-                return value[temp]
-            }
-            break
-        //如果是数组或对象，就直接将其合并到values里
-        case 'object':
-            if(args[1] instanceof Array){
-                values = values.concat(args[1])
-            }
-            iteratee = function (value) {
-                return value
-            }
-            break
-        default:
-            iteratee = function (value) {
-                return value
-            }
-            break;
+function differenceBy(array, values, iteratee) {  // ...xxx为剩余参数用法，允许将一个不定数量的参数表示为一个数组
+    if (!Array.isArray(values)) {
+        return array;
     }
-    temp = values.map((item) => iteratee(item))   
+    let temp = values.concat(values)  //temp存储迭代后的values数组
+    if (typeof iteratee === "string") {
+        let temp = iteratee
+        iteratee = function (value) {
+            return value[temp]
+        }
+    } else if (typeof iteratee === "object") {
+        temp = temp.concat(iteratee)
+        iteratee = function (value) {
+            return value
+        }
+    } else if (typeof iteratee !== "function") {
+        iteratee = function (value) {
+            return value
+        }
+    }
+
+// 这样写不好，不要强行switch，也不要滥用 ...args
+    // let values=[]  //存储迭代前的values数组
+    // let temp = []  //temp存储迭代后的values数组
+    // let iteratee = null
+    // values = values.concat(args[0])
+    // switch (typeof args[1]){  //迭代器暂时只考虑这种类型，不懂迭代器是数组或对象的话是啥情况，，，
+    //     case 'function': 
+    //         iteratee = args.pop()
+    //         break
+    //     case 'string':
+    //         let temp = args.pop()
+    //         iteratee = function (value){
+    //             return value[temp]
+    //         }
+    //         break
+    //     //如果是数组或对象，就直接将其合并到values里
+    //     case 'object':
+    //         if(args[1] instanceof Array){
+    //             values = values.concat(args[1])
+    //         }
+    //         iteratee = function (value) {
+    //             return value
+    //         }
+    //         break
+    //     default:
+    //         iteratee = function (value) {
+    //             return value
+    //         }
+    //         break;
+    // }
+    temp = temp.map((item) => iteratee(item))
     return array.filter((item) => !temp.includes(iteratee(item)))  //过滤，array的每一项也要迭代哈！
 }
 
@@ -43,9 +64,9 @@ console.log(test) //[3.1, 1.3]
 let test2 = differenceBy([{ 'x': 2 }, { 'x': 1 }], [{ 'x': 1 }], 'x')
 console.log(test2)
 
-console.log(differenceBy([{ 'x': 2 }, { 'x': 1 },9,"11",function(){},true], [{ 'x': 1 }], [1,2,9,{'x':2},'11',function(){},true]))
+console.log(differenceBy([{ 'x': 2 }, { 'x': 1 }, 9, "11", function () { }, true], [{ 'x': 1 }], [1, 2, 9, { 'x': 2 }, '11', function () { }, true]))
 
-console.log(differenceBy([{ 'x': 2 }, { 'x': 1 },9,"11",function(){},true], [{ 'x': 1 }], {"x":1}))
+console.log(differenceBy([{ 'x': 2 }, { 'x': 1 }, 9, "11", function () { }, true], [{ 'x': 1 }], { "x": 1 }))
 
 
 
