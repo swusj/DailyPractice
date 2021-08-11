@@ -1,9 +1,9 @@
 // 创建一个新数组，将array与任何数组 或 值连接在一起。
-function concat(array, ...arg) {
+function concat(array, ...args) {   //这里还是要用这个。。。因为这个就是不定有多少个的参数
     let res = []
     res = res.concat(array)
-    for (let i = 0; i < arg.length; i++) {
-        res = res.concat(arg[i])
+    for (let i = 0; i < args.length; i++) {
+        res = res.concat(args[i])
     }
     return res
 }
