@@ -18,21 +18,19 @@
 
 // https://262.ecma-international.org/6.0/#sec-samevaluezero
 
-function SameValueZero(a, b){  
-    if(Object.is(a,NaN)&& Object.is(b,NaN)){
+function SameValueZero(a, b) {
+    if (Object.is(a, NaN) && Object.is(b, NaN)) {
         return true
     }
     return a === b
 }
 
-console.log(SameValueZero(NaN,NaN))  // true
-console.log(SameValueZero(0,-0))     // true
+console.log(SameValueZero(NaN, NaN))  // true
+console.log(SameValueZero(0, -0))     // true
 
 function difference(array, values) {
     return array.filter((item) => {
-        for (let i = 0; i < values.length; i++) {
-            return !values.includes(item)  //不存在的保留
-        }
+        return !values.includes(item)  //不存在的保留
     })
 }
 
