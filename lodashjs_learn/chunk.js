@@ -1,6 +1,7 @@
 // 将数组拆分为二维数组
 function chunk(array, size) {
     const result = [];
+
     const length = array.length;
     let realArray = []
 
@@ -8,15 +9,12 @@ function chunk(array, size) {
         return []
     }
 
-    switch (Object.prototype.toString.call(array).replace(/^\[object (\S+)\]$/, '$1')) {
-        case "Array":
-            realArray = array
-            break
-        case "String":
-            realArray = array.split("")
-            break
-        default:
-            return []
+    if(Array.isArray(array)){
+        realArray = array
+    }else if(typeof array === "string"){
+        realArray = array.split("")
+    }else{
+        return []
     }
 
     let j = 0;
