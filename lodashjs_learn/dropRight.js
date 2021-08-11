@@ -2,40 +2,42 @@
 function dropRight(array, n = 1) {
     let realArray = []
 
-    switch (Object.prototype.toString.call(array).replace(/^\[object (\S+)\]$/, '$1')) {
-        case "Array":
-            realArray = array
-            break
-        case "String":
-            realArray = array.split("")
-            break
-        default:
-            return []
+    n = Number(n)
+
+    if (Array.isArray(array)) {
+        realArray = array
+    } else if (typeof array === "string") {
+        realArray = array.split("")
+    } else {
+        return []
     }
 
-    n = Number(n)    
-
-
-    return realArray.slice(0,array.length-n)
+    if (n > realArray.length) {
+        return []
+    }
+    return realArray.slice(0, array.length - n)
 }
 
-console.log(dropRight([1,2,3],1))
-console.log(dropRight([1,2,3],2))
-console.log(dropRight([1,2,3],5))
-console.log(dropRight([1,2,3]))
+console.log(dropRight([1, 2, 3], 1))
+console.log(dropRight([1, 2, 3], 2))
+console.log(dropRight([1, 2, 3], 3))
+console.log(dropRight([1, 2, 3], 5))
+console.log(dropRight([1, 2, 3]))
 console.log(dropRight())
 
-console.log(dropRight("paper",1))
-console.log(dropRight([],1))
-console.log(dropRight(true,1))
-console.log(dropRight({},1))
-console.log(dropRight(function(){},1))
+console.log(dropRight("paper", 1))
+console.log(dropRight([], 1))
+console.log(dropRight(true, 1))
+console.log(dropRight({}, 1))
+console.log(dropRight(function () { }, 1))
 
-console.log(dropRight([1,2,3],""))
-console.log(dropRight([1,2,3],"1"))
-console.log(dropRight([1,2,3],"1,2"))
-console.log(dropRight([1,2,3],{test:1}))
-console.log(dropRight([1,2,3],{}))
-console.log(dropRight([1,2,3],[]))
-console.log(dropRight([1,2,3],[1]))
-console.log(dropRight([1,2,3],[1,2]))
+console.log(dropRight([1, 2, 3], ""))
+console.log(dropRight([1, 2, 3], "1"))
+console.log(dropRight([1, 2, 3], "1,2"))
+console.log(dropRight([1, 2, 3], { test: 1 }))
+console.log(dropRight([1, 2, 3], {}))
+console.log(dropRight([1, 2, 3], []))
+console.log(dropRight([1, 2, 3], [1]))
+console.log(dropRight([1, 2, 3], [1, 2]))
+
+console.log(dropRight([1, 2, 3], -1))
