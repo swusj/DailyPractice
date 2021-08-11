@@ -1,36 +1,4 @@
-// 这个方法返回首个提供的参数。 额 咋感觉默认不是这个啊。。。
-// function identity(...value) {
-//     if (value.length === 0) {
-//         return undefined
-//     } else {
-//         return value[0]
-//     }
-// }
-
-// var object = { 'a': 1 };
-// console.log(identity(object) === object);
-// console.log(identity())
-// console.log(identity(1, 2, 3))
-
-//粗糙的实现，比较的是值
-function isEqual(a, b) {
-    if (typeof a === "object" && typeof b === "object") {
-        const a_keys = Object.keys(a);
-        const b_keys = Object.keys(b);
-        if (a_keys.length !== b_keys.length) {
-            return false
-        } else {
-            for (let i = 0; i < a_keys.length; i++) {
-                if (a[a_keys[i]] !== b[b_keys[i]]) {
-                    return false
-                }
-            }
-        }
-        return true
-    } else {
-        return a === b
-    }
-}
+var isEqual = require("./isEqual")
 
 // 创建一个切片数组，去除array中从 predicate 返回假值开始到尾部的部分。predicate 会传入3个参数： (value, index, array)。
 // 怎么感觉和描述不一样。。。测试出来是去掉最后一个假的右边的全真数组（去掉结尾到左的连续真，直到遇到第一个假）
