@@ -1,5 +1,3 @@
-var myType = require("./myType")
-
 //创建一个切片数组，去除array前面的n个元素。（n默认值为1。）
 function dropRight(array, n = 1) {
     let realArray = []
