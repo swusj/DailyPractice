@@ -2,8 +2,8 @@
 
 // Note: 这个方法会改变 array（注：不是创建新数组）。
 
-function fill(array,value,start = 0,end = array.length){
-    for(let i  = start;i<end;i++){
+function fill(array, value, start = 0, end = array.length) {
+    for (let i = start; i < end; i++) {
         array[i] = value
     }
     return array
@@ -11,7 +11,7 @@ function fill(array,value,start = 0,end = array.length){
 
 var array = [1, 2, 3];
 
-console.log(fill(array,'a'))
-console.log(fill(array,2))
-console.log(fill([4,6,8,10],'*',1,3))
-console.log(fill([4,6,8,10],'*',1))
+console.log(fill(array, 'a'))
+console.log(fill(array, 2))
+console.log(fill([4, 6, 8, 10], '*', 1, 3))
+console.log(fill([4, 6, 8, 10], '*', 1))
