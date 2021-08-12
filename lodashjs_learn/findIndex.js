@@ -57,7 +57,7 @@ function findIndex(array,predicate,fromIndex = 0){
         default:
             return -1
     }
-
+    fromIndex = Math.floor(fromIndex)
     for (let i = fromIndex; i<array.length; i++) {
         if (predicate(array[i], i, array)) {  //从右到左遇到第一个假
             return i
@@ -77,4 +77,6 @@ console.log(findIndex(users, { 'user': 'fred', 'active': false }))
 console.log(findIndex(users, ['active', false]))
 console.log(findIndex(users, 'active'))
 
-console.log(findIndex(users, { 'user': 'fred', 'active': false },2))
+console.log(findIndex(users, 'active',2))
+console.log(findIndex(users, 'active',2.2))
+console.log(findIndex(users, 'active',-1))
