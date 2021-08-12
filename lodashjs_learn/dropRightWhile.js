@@ -12,6 +12,8 @@ function dropRightWhile(array, predicate) {
         return []
     }
     switch (typeof predicate) {
+        case "function":
+            break
         case "string":
             temp = predicate
             predicate = function (item) {
