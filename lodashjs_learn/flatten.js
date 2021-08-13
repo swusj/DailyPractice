@@ -22,3 +22,4 @@ function flatten(array) {
 console.log(flatten([1, [2, [3, [4]], 5]]))
 console.log(flatten({}))
 console.log(flatten("1234"))
+console.log(flatten([1, [2, [3, [4]], 5],"123"]))
