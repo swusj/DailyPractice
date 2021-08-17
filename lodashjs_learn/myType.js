@@ -24,7 +24,7 @@ console.log(isObject([]));
 console.log(isArray([]));
 console.log(isArray({}));
 
-module.exports = {
+export {
     getType,
     isObject,
     isArray

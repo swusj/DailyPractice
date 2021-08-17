@@ -1,16 +1,10 @@
+import { toArray } from "./utils.js"
+
 // 创建一个切片数组，去除array尾部的n个元素。（n默认值为1。）
 function dropRight(array, n = 1) {
-    let realArray = []
+    let realArray = toArray(array)
 
     n = Number(n)
-
-    if (Array.isArray(array)) {
-        realArray = array
-    } else if (typeof array === "string") {
-        realArray = array.split("")
-    } else {
-        return []
-    }
 
     if (n > realArray.length) {
         return []

@@ -1,4 +1,4 @@
-var isEqual = require("./isEqual")
+import { isEqual } from "./utils.js"
 
 // 这个方式类似_.findIndex， 区别是它是从右到左的迭代集合array中的元素。
 function findLastIndex(array, predicate, fromIndex = array.length - 1) {

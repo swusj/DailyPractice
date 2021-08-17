@@ -1,21 +1,14 @@
+import { toArray } from "./utils.js"
 // 将数组拆分为二维数组
 function chunk(array, size) {
     const result = [];
-
-    const length = array.length;
-    let realArray = []
 
     if (size === 0) {
         return []
     }
 
-    if(Array.isArray(array)){
-        realArray = array
-    }else if(typeof array === "string"){
-        realArray = array.split("")
-    }else{
-        return []
-    }
+    let realArray = toArray(array)
+    const length = realArray.length;
 
     let j = 0;
 
@@ -57,5 +50,4 @@ chunk(str1, 2);
 chunk(str2, 2);
 
 console.log(chunk(func, 2))
-
 console.log(chunk(obj, 2))

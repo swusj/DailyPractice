@@ -1,4 +1,4 @@
-var isEqual = require("./isEqual")
+import { isEqual } from "./utils.js"
 
 // 创建一个切片数组，去除array中从起点开始到 predicate 返回假值结束部分。
 // predicate 会传入3个参数： (value, index, array)。
@@ -22,7 +22,7 @@ function dropWhile(array, predicate) {
             break
         case "number":
             return array;
-        case "object":  
+        case "object":
             if (Array.isArray(predicate)) { //将数组转化为对象
                 if (predicate.length === 0) {
                     return array
@@ -59,9 +59,9 @@ function dropWhile(array, predicate) {
             return array
     }
 
-    for (let i = 0; i <array.length; i++) {
+    for (let i = 0; i < array.length; i++) {
         if (!predicate(array[i], i, array)) {  //从左到右遇到第一个假
-            return array.slice(i,array.length)
+            return array.slice(i, array.length)
         }
     }
 }

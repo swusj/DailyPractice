@@ -1,7 +1,7 @@
-var isEqual = require("./isEqual")
+import { isEqual } from "./utils.js"
 
 // 该方法类似_.find，区别是该方法返回第一个通过 predicate 判断为真值的元素的索引值（index），而不是元素本身。
-function findIndex(array,predicate,fromIndex = 0){
+function findIndex(array, predicate, fromIndex = 0) {
     let temp
     if (Object.is(predicate, NaN) || predicate === undefined) {
         return -1
@@ -21,7 +21,7 @@ function findIndex(array,predicate,fromIndex = 0){
             break
         case "number":
             return array;
-        case "object":  
+        case "object":
             if (Array.isArray(predicate)) { //将数组转化为对象
                 if (predicate.length === 0) {
                     return -1
@@ -58,7 +58,7 @@ function findIndex(array,predicate,fromIndex = 0){
             return -1
     }
     fromIndex = Math.floor(fromIndex)
-    for (let i = fromIndex; i<array.length; i++) {
+    for (let i = fromIndex; i < array.length; i++) {
         if (predicate(array[i], i, array)) {  //从右到左遇到第一个假
             return i
         }
@@ -67,16 +67,16 @@ function findIndex(array,predicate,fromIndex = 0){
 }
 
 var users = [
-    { 'user': 'barney',  'active': false },
-    { 'user': 'fred',    'active': false },
+    { 'user': 'barney', 'active': false },
+    { 'user': 'fred', 'active': false },
     { 'user': 'pebbles', 'active': true }
 ];
 
-console.log(findIndex(users, function(o) { return o.user == 'barney'; }))
+console.log(findIndex(users, function (o) { return o.user == 'barney'; }))
 console.log(findIndex(users, { 'user': 'fred', 'active': false }))
 console.log(findIndex(users, ['active', false]))
 console.log(findIndex(users, 'active'))
 
-console.log(findIndex(users, 'active',2))
-console.log(findIndex(users, 'active',2.2))
-console.log(findIndex(users, 'active',-1))
+console.log(findIndex(users, 'active', 2))
+console.log(findIndex(users, 'active', 2.2))
+console.log(findIndex(users, 'active', -1))

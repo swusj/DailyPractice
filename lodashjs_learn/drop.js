@@ -1,15 +1,9 @@
+import { toArray } from "./utils.js"
+
 //创建一个切片数组，去除array前面的n个元素。（n默认值为1。）
 function dropRight(array, n = 1) {
-    let realArray = []
-    n = Number(n) >= 0 ? Number(n) : 0  ////  校验 n 是不是正整数
-
-    if (Array.isArray(array)) {
-        realArray = array
-    } else if (typeof array === "string") {
-        realArray = array.split("")
-    } else {
-        return []
-    }
+    let realArray = toArray(array)
+    n = Number(n) >= 0 ? Number(n) : 0  //  校验 n 是不是正整数
 
     return realArray.slice(n)
 }
