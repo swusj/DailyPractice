@@ -1,4 +1,4 @@
-import { isEqual, getIterator } from "../utils.js";
+import { getIterator } from "../utils.js";
 
 // 创建一个切片数组，去除array中从 predicate 返回假值开始到尾部的部分。predicate 会传入3个参数： (value, index, array)。
 // 怎么感觉和描述不一样。。。测试出来是去掉最后一个假的右边的全真数组（去掉结尾到左的连续真，直到遇到第一个假）
