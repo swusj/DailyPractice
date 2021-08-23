@@ -22,13 +22,15 @@ function matches(obj, source, map = new Map()) {
   return false;
 }
 
-var objects = [
-  { obj: 1, source: 2, c: 3, d: { e: 3, f: { g: 5 } } },
-  { obj: 4, source: 5, c: 6, d: { e: 3 } },
-];
+// var objects = [
+//   { obj: 1, source: 2, c: 3, d: { e: 3, f: { g: 5 } } },
+//   { obj: 4, source: 5, c: 6, d: { e: 3 } },
+// ];
 
-console.log(
-  objects.filter((item) => {
-    return matches(item, { obj: 1, c: 3, d: { e: 3 } });
-  })
-);
+// console.log(
+//   objects.filter((item) => {
+//     return matches(item, { obj: 1, c: 3, d: { e: 3 } });
+//   })
+// );
+
+export { matches };

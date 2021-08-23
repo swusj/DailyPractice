@@ -2,11 +2,26 @@
 // 注意: 这个方法支持以_.isEqual 的方式比较相同的值。
 import { property } from "./property.js";
 import { isEqual } from "../Lang/isEqual.js";
-function matchesProperty(obj, path, srcValue) {
-  const objSrcValue = property(obj, path);
-  return isEqual(objSrcValue, srcValue);
+function matchesProperty(path, srcValue) {
+  return function (obj) {
+    // 如果是数组且只有一个值，数组的第一个值就是path
+    let temp = Object.assign({}, path);
+    if (Array.isArray(path)) {
+      if (Array.length !== 1) {
+        return false;
+      }
+      temp = path[0];
+    } else if (typeof path === "string") {
+      temp = path;
+    }
+    const objSrcValue = property(temp)(obj);
+    return isEqual(objSrcValue, srcValue);
+  };
 }
 
 var objects = { a: 1, b: 2, c: 3 };
-console.log(matchesProperty(objects, "a", 4));
-console.log(matchesProperty(objects, "a", 1));
+console.log(matchesProperty("a", 4)(objects));
+console.log(matchesProperty("a", 1)(objects));
+console.log(matchesProperty(["a"], 1)(objects));
+
+export { matchesProperty };

@@ -1,3 +1,6 @@
+import { property } from "./Util/property.js";
+import { matches } from "./Util/matches.js";
+
 // 将本该是数组的参数转化为数组
 function toArray(value) {
   if (Array.isArray(value)) {
@@ -50,8 +53,72 @@ function isEqual(a, b, map = new Map()) {
 // let a = { a: 3, b: { c: 1 } };
 // let b = { a: 3, b: { c: 1 } };
 // console.log(isEqual(a, b));
+
+// 根据迭代器数据类型获取真正的迭代器方法
+function getIterator(predicate) {
+  let res = function () {
+    return true;
+  };
+  if (Object.is(predicate, NaN) || predicate === undefined) {
+    return res;
+  }
+
+  switch (typeof predicate) {
+    case "function":
+      res = predicate;
+      break;
+    case "string":
+      res = property(predicate);
+      break;
+    case "object":
+      if (Array.isArray(predicate)) {
+        // 如果是数组，将数组转化为对象
+        if (predicate.length === 0) {
+          res = function () {
+            return false;
+          };
+          break;
+        }
+        let temp = {};
+        for (let i = 0; i < predicate.length - 1; i++) {
+          if (typeof predicate[i] === "string") {
+            temp[predicate[i]] = predicate[i + 1];
+            i++;
+          } else {
+            //如果不能转化成对象
+            break;
+          }
+        }
+        res = function (item) {
+          // 如果有任一一个属性值相等，就为真
+          const keys = Object.keys(temp);
+          for (let i = 0; i < keys.length; i++) {
+            if (matches(item[keys[i]], temp[keys[i]])) {
+              return true;
+            }
+          }
+          return false;
+        };
+      } else {
+        //普通对象，就比较是否值相等了
+        if (Object.keys(predicate).length === 0) {
+          break;
+        }
+        let temp = predicate;
+        res = function (item) {
+          return matches(item, temp);
+        };
+      }
+      break;
+    default:
+      break;
+  }
+  return res;
+}
+
 export {
   toArray, // 将本该是数组的参数转化为数组
   isFalse, // 判断参数是否为假值的函数，注：认为 [], {} 不为假值
   isEqual, // 粗糙的实现，比较的是值
+  getIterator, // 根据迭代器数据类型获取真正的迭代器方法
 };
