@@ -3,8 +3,8 @@ import { toArray } from "../utils.js";
 //注：不改变参数数组，返回的新数组
 
 function initial(array) {
-  const temp = toArray(array);
-  return temp.slice(0, array.length - 1);
+	const temp = toArray(array);
+	return temp.slice(0, array.length - 1);
 }
 
 console.log(initial([1, 2, 3]));

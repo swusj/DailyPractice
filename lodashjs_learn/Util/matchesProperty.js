@@ -3,20 +3,20 @@
 import { property } from "./property.js";
 import { isEqual } from "../Lang/isEqual.js";
 function matchesProperty(path, srcValue) {
-  return function (obj) {
-    // 如果是数组且只有一个值，数组的第一个值就是path
-    let temp = Object.assign({}, path);
-    if (Array.isArray(path)) {
-      if (Array.length !== 1) {
-        return false;
-      }
-      temp = path[0];
-    } else if (typeof path === "string") {
-      temp = path;
-    }
-    const objSrcValue = property(temp)(obj);
-    return isEqual(objSrcValue, srcValue);
-  };
+	return (obj) => {
+		// 如果是数组且只有一个值，数组的第一个值就是path
+		let temp = Object.assign({}, path);
+		if (Array.isArray(path)) {
+			if (Array.length !== 1) {
+				return false;
+			}
+			temp = path[0];
+		} else if (typeof path === "string") {
+			temp = path;
+		}
+		const objSrcValue = property(temp)(obj);
+		return isEqual(objSrcValue, srcValue);
+	};
 }
 
 var objects = { a: 1, b: 2, c: 3 };
