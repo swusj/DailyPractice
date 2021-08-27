@@ -9,6 +9,8 @@ function pull(array, ...values) {
 	return array;
 }
 
-var array = [1, 2, 3, 1, 2, 3];
-pull(array, 2, 3);
-console.log(array);
+// var array = [1, 2, 3, 1, 2, 3];
+// pull(array, 2, 3);
+// console.log(array);
+
+export { pull };
