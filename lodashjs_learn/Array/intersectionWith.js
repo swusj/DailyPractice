@@ -4,9 +4,7 @@ import { isEqual } from "../Lang/isEqual.js";
 function intersectionWith(object, ...args) {
 	const length = args.length;
 	let comparator = args[length - 1];
-	// 浅拷贝一下
-	let res = [];
-	res = res.concat(object);
+	let res = object;
 	for (let i = 0; i < length - 1; i++) {
 		if (res === []) {
 			return [];
