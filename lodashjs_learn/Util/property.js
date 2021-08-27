@@ -23,9 +23,9 @@ function property(path) {
 	};
 }
 
-var objects = { a: 1, b: 2, c: 3 };
+// var objects = { a: 1, b: 2, c: 3 };
 
-var objects = [{ a: { b: 2 } }, { a: { b: 1 } }];
+// var objects = [{ a: { b: 2 } }, { a: { b: 1 } }];
 
 // console.log(
 // 	objects.map((item) => {
