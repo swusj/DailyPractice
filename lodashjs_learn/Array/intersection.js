@@ -3,6 +3,9 @@ function intersection(...args) {
 	let length = args.length;
 	let res = args[0];
 	for (let i = 1; i < length; i++) {
+		if (res === []) {
+			break;
+		}
 		res = res.filter((item) => {
 			return args[i].includes(item);
 		});
