@@ -1,4 +1,4 @@
-import { isEqual } from "../utils.js";
+import { isEqual } from "../Lang/isEqual.js";
 
 // 这个方法类似_.intersection，区别是它接受一个 comparator 调用比较arrays中的元素。结果值是从第一数组中选择。comparator 会传入两个参数：(arrVal, othVal)。
 function intersectionWith(object, ...args) {
