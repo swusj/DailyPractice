@@ -129,7 +129,7 @@ function SameValueZero(a, b) {
 export {
 	toArray, // 将本该是数组的参数转化为数组
 	isFalse, // 判断参数是否为假值的函数，注：认为 [], {} 不为假值
-	isEqual, // 粗糙的实现，比较的是值
+	isEqual, // 深比较，比较的是值
 	getIterator, // 根据迭代器数据类型获取真正的迭代器方法
 	SameValueZero, // NaN NaN  true   |     0 -0     true
 };
