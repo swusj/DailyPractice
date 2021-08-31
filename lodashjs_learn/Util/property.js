@@ -3,7 +3,7 @@ import { isArray } from "../myType.js";
 function property(path) {
 	return (obj) => {
 		let temp = [];
-		let res = Object.assign({}, obj);
+		let res = obj;
 		if (typeof path === "string") {
 			temp = path.split(".");
 		} else if (isArray(path)) {
@@ -11,7 +11,6 @@ function property(path) {
 		} else {
 			return undefined;
 		}
-
 		for (let item of temp) {
 			if (res[item] === undefined) {
 				return undefined;
