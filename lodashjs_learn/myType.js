@@ -1,16 +1,24 @@
 //返回参数类型，注意，字符串开头为大写
 function getType(x) {
-  return Object.prototype.toString.call(x).replace(/^\[object (\S+)\]$/, "$1");
+	return Object.prototype.toString.call(x).replace(/^\[object (\S+)\]$/, "$1");
 }
+
+// console.log(
+// 	getType(
+// 		(function () {
+// 			return arguments;
+// 		})()
+// 	)
+// );
 
 //判断参数是否为普通对象
 function isObject(obj) {
-  return getType(obj) === "Object";
+	return getType(obj) === "Object";
 }
 
 //判断参数是否为数组
 function isArray(arr) {
-  return getType(arr) === "Array";
+	return getType(arr) === "Array";
 }
 
 // TEST
