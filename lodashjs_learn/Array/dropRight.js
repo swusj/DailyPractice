@@ -2,14 +2,14 @@ import { toArray } from "../utils.js";
 
 // 创建一个切片数组，去除array尾部的n个元素。（n默认值为1。）
 function dropRight(array, n = 1) {
-  let realArray = toArray(array);
+	array = toArray(array);
 
-  n = Number(n);
+	n = Number(n);
 
-  if (n > realArray.length) {
-    return [];
-  }
-  return realArray.slice(0, array.length - n);
+	if (n > array.length) {
+		return [];
+	}
+	return array.slice(0, array.length - n);
 }
 
 console.log(dropRight([1, 2, 3], 1));

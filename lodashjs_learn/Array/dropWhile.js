@@ -1,29 +1,30 @@
 import { getIterator } from "../utils.js";
-
+import { toArray } from "../utils.js";
 // 创建一个切片数组，去除array中从起点开始到 predicate 返回假值结束部分。
 // predicate 会传入3个参数： (value, index, array)。
 function dropWhile(array, predicate) {
-  let temp = getIterator(predicate);
+	array = toArray(array);
+	predicate = getIterator(predicate);
 
-  for (let i = 0; i < array.length; i++) {
-    if (!temp(array[i], i, array)) {
-      //从左到右遇到第一个假
-      return array.slice(i, array.length);
-    }
-  }
-  return [];
+	for (let i = 0; i < array.length; i++) {
+		if (!predicate(array[i], i, array)) {
+			//从左到右遇到第一个假
+			return array.slice(i, array.length);
+		}
+	}
+	return [];
 }
 
 var users = [
-  { user: "barney", active: false },
-  { user: "fred", active: false },
-  { user: "pebbles", active: true },
+	{ user: "barney", active: false },
+	{ user: "fred", active: false },
+	{ user: "pebbles", active: true },
 ];
 
 console.log(
-  dropWhile(users, function (o) {
-    return !o.active;
-  })
+	dropWhile(users, function (o) {
+		return !o.active;
+	})
 );
 console.log(dropWhile(users, { user: "barney", active: false }));
 console.log(dropWhile(users, ["active", false]));

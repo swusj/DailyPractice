@@ -1,6 +1,7 @@
 // // 调用 iteratee 遍历 collection(集合) 中的每个元素， iteratee 调用3个参数： (value, index|key, collection)。
 // // 如果迭代函数（iteratee）显式的返回 false ，迭代会提前退出。
 
+// 如果是普通数组，与原生forEach不同的是，原生的会跳过“稀疏的缝隙”
 // import { isObject } from "../myType";
 
 // // 简单测试下发现不会遍历继承来的属性
@@ -19,3 +20,5 @@
 // forEach({ a: 1, b: 2 }, function (value, key) {
 // 	console.log(key);
 // });
+
+// TODO
