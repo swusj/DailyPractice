@@ -1,10 +1,9 @@
+import { isEqual } from "../Lang/isEqual.js";
+import { isArray } from "../myType.js";
 // 这个方法类似_.union ，除了它接受一个 iteratee （迭代函数），调用每一个数组（array）的每个元素以产生唯一性计算的标准。iteratee 会传入一个参数：(value)。
 // 返回一个新的联合数组。
 
 // 比较器返回为假才加入并集的意思
-import { isEqual } from "../Lang/isEqual.js";
-import { isArray } from "../myType.js";
-
 function unionWith(...args) {
 	let res = [];
 	let comparator = null;
