@@ -1,15 +1,21 @@
+import union from './union.js';
 // 创建一个给定数组唯一值的数组，使用symmetric difference做等值比较。返回值的顺序取决于他们数组的出现顺序。
 function xor(...arrays) {
+  // 过滤掉不是数组的元素
   let myArray = arrays.filter((item) => Array.isArray(item));
-  return myArray.reduce(reducer, []);
-}
-// 这是reduce方法接收的reducer方法，第一个参数为前面迭代的结果，第二个为当前索引
-function reducer(prevRes, currentArray) {
-  // 先去下重
-  let unReapeatArray = new Set(currentArray);
-  return prevRes.concat(
-    [...unReapeatArray].filter((item) => !prevRes.includes(item))
-  );
+  let res = [];
+
+  // 遍历传入的数组数组
+  for (let i = 0; i < myArray.length; i++) {
+    // 将除该数组以外的数组做并集
+    let otherUnion = union(...myArray.slice(0, i), ...myArray.slice(i + 1, myArray.length));
+    // 给每一个数组先去重
+    let unReapeatArray = [...new Set(myArray[i])];
+    // 每一个数组取交集的补集
+    let xoredArray = unReapeatArray.filter((item) => !otherUnion.includes(item));
+    res = res.concat(xoredArray);
+  }
+  return res;
 }
 
 console.log(xor([1, 2, 3, 1, 2, 3]));
